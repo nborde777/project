@@ -10,19 +10,58 @@ wb3 = load_workbook(filename = r"G:\PycharmProjects\read_xlsx\Facebook-IG UTM Pa
 wb4 = load_workbook(filename = r"G:\PycharmProjects\read_xlsx\Pinterest UTM Params for PAC.xlsx")
 
 record_list=[]
-for i in wb4:
+
+
+for i in wb1:
     for k in i:
         record_list.append(k)
-#
-# columns=record_list[0]
+
 record_list=record_list[1:]
 for i in record_list:
     val = [j.value if j.value is not None else '' for j in i]
-    #  while reading facebook sheet add the following lines
-    # if len(val)>7:
-    #     break
-    cur.execute("INSERT INTO pinterest_params (campaign_name,geo,prospecting_retargeting,utm_source,utm_campaign,destination_url) \
-          VALUES (%s,%s,%s,%s,%s,%s)",val);
+
+    cur.execute("INSERT INTO onetable (source,campaign,geo,prospecting_retargeting,brand_nobrand) \
+          VALUES (%s,%s,%s,%s,%s)",[val[2],val[3],val[4],val[5],val[6]]);
+
+record_list=[]
+
+for i in wb2:
+    for k in i:
+        record_list.append(k)
+
+record_list=record_list[1:]
+for i in record_list:
+    val = [j.value if j.value is not None else '' for j in i]
+
+    cur.execute("INSERT INTO onetable (source,campaign,geo,prospecting_retargeting,brand_nobrand) \
+          VALUES (%s,%s,%s,%s,%s)",[val[1],val[2],val[4],val[3],val[5]]);
+
+record_list=[]
+
+for i in wb3:
+    for k in i:
+        record_list.append(k)
+
+record_list=record_list[1:]
+for i in record_list:
+    val = [j.value if j.value is not None else '' for j in i]
+    if len(val)>7:
+        break
+    cur.execute("INSERT INTO onetable (source,campaign,geo,prospecting_retargeting,brand_nobrand) \
+          VALUES (%s,%s,%s,%s,%s)",[val[4],val[5],val[3],val[2],'']);
+
+record_list=[]
+
+for i in wb4:
+    for k in i:
+        record_list.append(k)
+
+record_list=record_list[1:]
+for i in record_list:
+    val = [j.value if j.value is not None else '' for j in i]
+
+    cur.execute("INSERT INTO onetable (source,campaign,geo,prospecting_retargeting,brand_nobrand) \
+          VALUES (%s,%s,%s,%s,%s)",[val[3],val[4],val[1],val[2],'']);
 
 conn.commit()
 conn.close()

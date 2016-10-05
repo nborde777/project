@@ -5,19 +5,15 @@ conn = psycopg2.connect(database="test_smile", user="postgres", password="postgr
 cur=conn.cursor()
 
 def welcome(request):
-    res={}
-    cur.execute("Select * from google_params")
+
+    cur.execute("Select * from onetable where source=%s",["google"])
     g_p=cur.fetchall()
-    cur.execute("Select * from facebook_params")
-    fb_p=cur.fetchall()
-    cur.execute("Select * from pinterest_params")
-    pin_p=cur.fetchall()
-    cur.execute("Select * from bing_params")
+    cur.execute("Select * from onetable where source=%s",["bing"])
     bing_p=cur.fetchall()
-    res['google_params']=g_p
-    res['google_params']=fb_p
-    res['google_params']=pin_p
-    res['google_params']=bing_p
+    cur.execute("Select * from onetable where source=%s or source=%s or source=%s or source=%s",["Facebook","facebook","Instagram","instagram"])
+    fb_p=cur.fetchall()
+    cur.execute("Select * from onetable where source=%s",["Pinterest"])
+    pin_p=cur.fetchall()
 
     return render(request,'utm_app/display.html',
 							  {'res1': g_p,'res2': fb_p,'res3': pin_p,'res4': bing_p})
