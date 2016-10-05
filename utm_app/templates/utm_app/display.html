@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h4>google_params</h4>
+    <br>
+     <table style="width:100%">
+  <tr>
+  <th>S.No.</th>
+  <th>Campaign</th>
+  <th>Ad Group</th>
+  <th>UTM Source</th>
+  <th>UTM Campaign</th>
+  <th>Geo</th>
+  <th>Prospecting/Retargeting</th>
+  <th>Brand_Nonbrand</th>
+  </tr>
+  {% for i in res1 %}
+      <tr>
+    <td>{{ i.0 }}</td>
+    <td>{{ i.1 }}</td>
+    <td>{{ i.2 }}</td>
+    <td>{{ i.3 }}</td>
+    <td>{{ i.4 }}</td>
+    <td>{{ i.5 }}</td>
+    <td>{{ i.6 }}</td>
+    <td>{{ i.7 }}</td>
+  </tr>
+{% endfor %}
+
+</table>
+
+
+<h4>pinterest_params</h4>
+    <br>
+     <table style="width:100%">
+  <tr>
+  <th>S.NO.</th>
+  <th>Campaign Name</th>
+  <th>Prospecting-Retargeting</th>
+  <th>Geo</th>
+  <th>UTM Source</th>
+  <th>UTM Campaign</th>
+  </tr>
+  {% for i in res3 %}
+      <tr>
+    <td>{{ i.0 }}</td>
+    <td>{{ i.1 }}</td>
+    <td>{{ i.2 }}</td>
+    <td>{{ i.3 }}</td>
+    <td>{{ i.4 }}</td>
+    <td>{{ i.5 }}</td>
+  </tr>
+{% endfor %}
+
+</table>
+
+
+<h4>facebook_params</h4>
+    <br>
+     <table style="width:100%">
+  <tr>
+  <th>S.NO.</th>
+  <th>Campaign Name </th>
+  <th>Ad Set Name</th>
+  <th>Prospecting-Retargeting</th>
+  <th>Geo</th>
+  <th>Source</th>
+  <th>Campaign</th>
+  </tr>
+  {% for i in res2 %}
+      <tr>
+    <td>{{ i.0 }}</td>
+    <td>{{ i.1 }}</td>
+    <td>{{ i.2 }}</td>
+    <td>{{ i.3 }}</td>
+    <td>{{ i.4 }}</td>
+    <td>{{ i.5 }}</td>
+    <td>{{ i.6 }}</td>
+  </tr>
+{% endfor %}
+
+</table>
+<h4>bing_params</h4>
+    <br>
+     <table style="width:100%">
+  <tr>
+  <th>S.No.</th>
+  <th>Campaign</th>
+  <th>UTM Source</th>
+  <th>UTM Campaign</th>
+  <th>Geo</th>
+  <th>Prospecting/Retargeting</th>
+  <th>Brand_Nonbrand</th>
+  </tr>
+  {% for i in res4 %}
+      <tr>
+    <td>{{ i.0 }}</td>
+    <td>{{ i.1 }}</td>
+    <td>{{ i.2 }}</td>
+    <td>{{ i.3 }}</td>
+    <td>{{ i.4 }}</td>
+    <td>{{ i.5 }}</td>
+    <td>{{ i.6 }}</td>
+  </tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>
