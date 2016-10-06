@@ -3,10 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 </head>
 <body>
-<h4>Source : GOOGLE</h4>
-    <br>
+
+<form method="post" action="/edit/">{% csrf_token %}
+    <div id="section1" style="display: none"><!-- some controls-->
+  <h4>EDIT FIELDS</h4>
+  <input id='id_col' type="hidden" name='id_col' value="" ><br>
+  UTM SOURCE  :<input id='col1' type="text" name="col1" value="" readonly><br>
+  UTM CAMPAIGN:<input id='col2' type="text" name="col2" value=""><br>
+  GEO         :<input id='col3' type="text" name="col3" value=""><br>
+  Prospecting/Retargeting:<input id='col4' type="text" name="col4" value=""><br>
+  Brand_Nonbrand:<input id='col5' type="text" name="col5" value=""><br>
+  <input id='save' type="submit" name='submit' value="SAVE">
+    <input id="cancel" type="button" onclick="abc()" value="CANCEL" style="display: none">
+    </div>
+</form>
+ <h4>Source : GOOGLE</h4>
+
      <table style="width:100%">
   <tr>
   <th>S.No.</th>
@@ -17,8 +32,8 @@
   <th>Brand_Nonbrand</th>
   </tr>
   {% for i in res1 %}
-      <tr>
-    <td>{{ i.0 }}</td>
+       <tr id="{{ i.0 }}">
+           <td><button id="{{ i.0 }}" value="EDIT">EDIT</button></td>
     <td>{{ i.1 }}</td>
     <td>{{ i.2 }}</td>
     <td>{{ i.3 }}</td>
@@ -31,7 +46,6 @@
 
 
 <h4>Source : PINTEREST</h4>
-    <br>
      <table style="width:100%">
   <tr>
   <th>S.No.</th>
@@ -42,8 +56,8 @@
   <th>Brand_Nonbrand</th>
   </tr>
   {% for i in res3 %}
-      <tr>
-    <td>{{ i.0 }}</td>
+      <tr id="{{ i.0 }}">
+          <td><button id="{{ i.0 }}" value="EDIT">EDIT</button></td>
     <td>{{ i.1 }}</td>
     <td>{{ i.2 }}</td>
     <td>{{ i.3 }}</td>
@@ -56,7 +70,6 @@
 
 
 <h4>Source : FACEBOOK/INSTAGRAM</h4>
-    <br>
      <table style="width:100%">
     <tr>
   <th>S.No.</th>
@@ -67,8 +80,8 @@
   <th>Brand_Nonbrand</th>
   </tr>
   {% for i in res2 %}
-      <tr>
-    <td>{{ i.0 }}</td>
+      <tr id="{{ i.0 }}">
+          <td><button id="{{ i.0 }}" value="EDIT">EDIT</button></td>
     <td>{{ i.1 }}</td>
     <td>{{ i.2 }}</td>
     <td>{{ i.3 }}</td>
@@ -80,7 +93,6 @@
 </table>
 
 <h4>Source : BING</h4>
-    <br>
      <table style="width:100%">
   <tr>
   <th>S.No.</th>
@@ -91,8 +103,8 @@
   <th>Brand_Nonbrand</th>
   </tr>
   {% for i in res4 %}
-      <tr>
-    <td>{{ i.0 }}</td>
+      <tr id="{{ i.0 }}">
+    <td><button id="{{ i.0 }}" value="EDIT">EDIT</button></td>
     <td>{{ i.1 }}</td>
     <td>{{ i.2 }}</td>
     <td>{{ i.3 }}</td>
@@ -102,6 +114,27 @@
 {% endfor %}
 
 </table>
+<script>
+function abc(){
+    $("#section1").hide();
+    $("#cancel").hide();
+}
+    $("button").click(function() {
+    $("#section1").show();
+    $("#cancel").show();
+    var tr = document.getElementById(this.id);
+    var td = tr.getElementsByTagName("td");
+        $('#id_col').val(this.id);
+        $('#col1').val(td[1].innerHTML);
+        $('#col2').val(td[2].innerHTML);
+        $('#col3').val(td[3].innerHTML);
+        $('#col4').val(td[4].innerHTML);
+        $('#col5').val(td[5].innerHTML);
 
+    });
+
+
+
+</script>
 </body>
 </html>
